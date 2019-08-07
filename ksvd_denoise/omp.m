@@ -17,7 +17,6 @@ function [ A ] = omp( D, k, X, L, epsilon )
         
             residue = residue - A(I, s) * D(:, I);
             rmse_residue = sqrt(residue' * residue);
-            %disp(rmse_residue);
             if rmse_residue <= epsilon
                 break;
             end

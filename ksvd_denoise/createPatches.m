@@ -1,16 +1,21 @@
 function [patches, widx] = createPatches(image, blockSize)
+%createPatches Create patches from a given image
+%  [patches windowIndex] = createPatches(X) 
+%  patches - an array to hold the blockSize x blockSize patches
+%  widx - widow index, this vaule can be used for reconstructing image 
+%         from patches 
     [M, N] = size(image);
-    p_n=blockSize;
-    n = p_n*p_n;
-    patches_count = (M - p_n + 1) * (N - p_n + 1);
-    patches = zeros(n, patches_count);
-    widx = zeros(2, patches_count);
-    patch_index = 1;
-    for i = 1:M - p_n + 1
-        for j = 1:N - p_n + 1
-            patch = image(i : i + p_n - 1, j : j + p_n - 1);
-            patches(:, patch_index) = patch(:);
-            widx(:, patch_index) = [i; j];
-            patch_index = patch_index + 1;
+    pn = blockSize;
+    n = pn * pn;
+    pcount = (M - pn + 1) * (N - pn + 1);
+    patches = zeros(n, pcount);
+    widx = zeros(2, pcount);
+    p = 1;
+    for i = 1:M - pn + 1
+        for j = 1:N - pn + 1
+            patch = image(i : i + pn - 1, j : j + pn - 1);
+            patches(:, p) = patch(:);
+            widx(:, p) = [i; j];
+            p = p + 1;
         end
     end

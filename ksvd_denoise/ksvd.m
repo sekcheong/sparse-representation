@@ -1,4 +1,4 @@
-function [ D, A, rmses, sparsity ] = ksvd(D, X, k, L, epsilon, max_iter, print )
+function [ D, A, rmses, sparsity ] = ksvd(D, X, k, L, epsilon, max_iter, debug)
 
     [n, ~] = size(X);
     % Generate column normalized positive D
@@ -13,18 +13,17 @@ function [ D, A, rmses, sparsity ] = ksvd(D, X, k, L, epsilon, max_iter, print )
     
     A = omp(D, k, X, L, epsilon);
     
-    [M_A, N_A] = size(A);
+    [M, N] = size(A);
     
-    size_A = M_A * N_A;
+    size_A = M * N;
     
-    Il_empty = 1:N_A;
+    Il_empty = 1:N;
     
     for iter = 1:max_iter
         tic;
         R = X - D * A;
         for k_index = 1:k
             Il = find(A(k_index, :) ~= 0);
-            %fprintf('\t%d\n', length(Il));
             if isempty(Il)
                 Il = Il_empty;
             end
@@ -46,8 +45,8 @@ function [ D, A, rmses, sparsity ] = ksvd(D, X, k, L, epsilon, max_iter, print )
         
         t = toc;
         
-        if print
-            fprintf('\tIteration %d: %.4fs, RMSE = %.4f, Sparsity = %.4f\n', iter, t, rmses(iter), sparsity(iter));
+        if debug
+            fprintf('  Iteration %d: %.4fs, RMSE = %.4f, Sparsity = %.4f\n', iter, t, rmses(iter), sparsity(iter));
         end
         
         if abs(err - last_err) < 1e-4
