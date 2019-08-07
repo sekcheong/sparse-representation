@@ -26,7 +26,7 @@ for i = 1:length(sort_lambdas)
     alpha_hat(sort_lambdas(i),1) = x(i);
 end
 figure(1)
-plot(0:10,errors)
+plot(0:k,errors)
 title('2-Norm of Residual at Each Iteration')
 xlabel('# Iterations')
 ylabel('2-Norm of Residual')
