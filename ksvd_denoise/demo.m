@@ -1,7 +1,8 @@
+%% Clear
 close all; clc; clear all;
 
 
-%% Read the image 
+%% Read the image data
 imgfile = 'barbara.png';
 img = imread(imgfile);
 img = double(img);
