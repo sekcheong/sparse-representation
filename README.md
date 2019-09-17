@@ -1,1 +1,3 @@
-# sparse_rep
+# Sparse Representation and Orthogonal Matching Pursuit Algorithm with Application to Image Denosing
+Sparse solutions to an underdetermined system of linear equations can be computationally tractable. This leads to many interesting applications in signal/image processing and computer vision problems such as denoising, restoration, inpainting, compression and classification. The class presents relaxation techniques such LASSO for obtaining sparse solutions. This project introduces the concept of dictionary learning, the orthogonal matching pursuit (OMP) algorithm to solve for sparse solutions, and an example application in image
+denoising using the KSVD algorithm. Users would learn the basic idea of dictionary learning like dictionary and sparse representation. Users would also be able to understand and conduct OMP given a dictionary by following the instructions.
